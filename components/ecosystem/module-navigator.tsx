@@ -9,8 +9,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export function ModuleNavigator() {
-  const { modules, currentModule, setCurrentModule, isTransitioning } =
-    useEcosystem();
+  const { modules, currentModule, setCurrentModule } = useEcosystem();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);

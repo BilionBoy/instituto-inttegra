@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { ProfessionalCard } from "@/components/ecosystem/professional-card";
+import { useEcosystem } from "@/components/ecosystem/ecosystem-provider";
 import { ModuleSection } from "@/components/ecosystem/module-section";
+import { ProfessionalCard } from "@/components/ecosystem/professional-card";
 
 // Dados de exemplo dos profissionais
 const professionals = [
@@ -36,6 +37,9 @@ const professionals = [
 ];
 
 export default function Professionals() {
+  const { getModuleColor } = useEcosystem();
+  const moduleColor = getModuleColor();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -45,7 +49,6 @@ export default function Professionals() {
       title="Conheça nossa equipe"
       subtitle="Nossos Especialistas"
       description="Profissionais altamente qualificados e especializados em diversas áreas da saúde"
-      color="#af37d4"
       backgroundImage="/images/clinic-1.jpg"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -60,7 +63,7 @@ export default function Professionals() {
             slug={professional.slug}
             crm={professional.crm}
             index={index}
-            moduleColor="#af37d4"
+            moduleColor={moduleColor}
           />
         ))}
       </div>

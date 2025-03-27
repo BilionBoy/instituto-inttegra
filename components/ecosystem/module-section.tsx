@@ -3,24 +3,28 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { useEcosystem } from "./ecosystem-provider";
 
 interface ModuleSectionProps {
   title: string;
   subtitle: string;
   description: string;
-  color: string;
   backgroundImage?: string;
   children: ReactNode;
+  color?: string; // Optional override
 }
 
 export function ModuleSection({
   title,
   subtitle,
   description,
-  color,
   backgroundImage = "/images/clinic-1.jpg",
   children,
+  color,
 }: ModuleSectionProps) {
+  const { getModuleColor } = useEcosystem();
+  const moduleColor = color || getModuleColor();
+
   return (
     <section className="relative py-24 bg-[#0a0a0a]">
       {/* Background image with overlay */}
@@ -38,7 +42,7 @@ export function ModuleSection({
         <div className="text-center mb-16">
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none mb-6 backdrop-blur-sm"
-            style={{ backgroundColor: `${color}20` }}
+            style={{ backgroundColor: `${moduleColor}20` }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -46,7 +50,7 @@ export function ModuleSection({
           >
             <span
               className="text-sm font-medium uppercase tracking-wider"
-              style={{ color }}
+              style={{ color: moduleColor }}
             >
               {subtitle}
             </span>
@@ -61,7 +65,7 @@ export function ModuleSection({
             {title.split(" ").map((word, i, arr) =>
               i === arr.length - 1 ? (
                 <span key={i}>
-                  <span className="font-medium" style={{ color }}>
+                  <span className="font-medium" style={{ color: moduleColor }}>
                     {word}
                   </span>
                 </span>
@@ -72,7 +76,7 @@ export function ModuleSection({
           </motion.h2>
           <motion.div
             className="w-20 h-px mx-auto mt-6 mb-6"
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: moduleColor }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

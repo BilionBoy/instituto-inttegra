@@ -1,4 +1,3 @@
-// app/layout.tsx
 import type React from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -7,7 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/site-footer";
 import { EcosystemProvider } from "@/components/ecosystem/ecosystem-provider";
-import { ModuleNavigator } from "@/components/ecosystem/module-navigator";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -39,7 +37,6 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <SiteFooter />
-            <ModuleNavigator />
           </EcosystemProvider>
         </ThemeProvider>
       </body>

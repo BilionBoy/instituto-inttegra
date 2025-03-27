@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   Clock,
   ArrowRight,
@@ -12,9 +10,9 @@ import {
   Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ModuleHeader } from "@/components/ecosystem/module-header";
-import { ModuleTransition } from "@/components/ecosystem/module-transition";
-import { useEcosystem } from "@/components/ecosystem/ecosystem-provider";
+import { ModuleSection } from "@/components/ecosystem/module-section";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ContentItem {
@@ -28,9 +26,6 @@ interface ContentItem {
 }
 
 export default function Content() {
-  const { currentModule } = useEcosystem();
-  const moduleColor = currentModule?.color || "#d43737";
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -109,231 +104,154 @@ export default function Content() {
   };
 
   return (
-    <ModuleTransition>
-      <ModuleHeader />
-
-      {/* Hero Section */}
-      <section className="relative py-24 bg-[#0a0a0a]">
-        {/* Background image with overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/nutrition-1.jpg"
-            alt="Conteúdo"
-            fill
-            className="object-cover opacity-15"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
-        </div>
-
-        <div className="container relative z-10 mx-auto px-4 md:px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none mb-6 backdrop-blur-sm"
-              style={{ backgroundColor: `${moduleColor}20` }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <span
-                className="text-sm font-medium uppercase tracking-wider"
-                style={{ color: moduleColor }}
-              >
-                Hub de Conteúdo
-              </span>
-            </motion.div>
-            <motion.h2
-              className="text-4xl md:text-5xl font-light text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
-              Conhecimento{" "}
-              <span className="font-medium" style={{ color: moduleColor }}>
-                acessível
-              </span>
-            </motion.h2>
-            <motion.div
-              className="w-20 h-px mx-auto mt-6 mb-6"
-              style={{ backgroundColor: moduleColor }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            ></motion.div>
-            <motion.p
-              className="text-white/80 mt-4 max-w-2xl mx-auto text-lg md:text-xl font-light"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Artigos, vídeos, e-books e podcasts sobre saúde, bem-estar e
-              medicina personalizada
-            </motion.p>
-          </div>
-
-          {/* Featured Content */}
-          <motion.div
-            className="relative px-4 md:px-8 lg:px-12 mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div
-              className="relative overflow-hidden shadow-lg"
-              style={{ boxShadow: `0 0 30px ${moduleColor}30` }}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="relative h-[300px] lg:h-auto">
-                  <Image
-                    src="/images/nutrition-1.jpg"
-                    alt="Guia Completo sobre Lipedema"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/70 to-transparent lg:hidden"></div>
-                </div>
-                <div className="bg-[#0a0a0a] text-white p-8 lg:p-12 relative border-t lg:border-t-0 lg:border-l border-gray-800">
-                  <div className="absolute top-0 right-0 mt-6 mr-6">
-                    <span
-                      className="px-3 py-1 rounded-none text-xs uppercase tracking-wider font-light"
-                      style={{ backgroundColor: moduleColor, color: "#0a0a0a" }}
-                    >
-                      E-book
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Clock size={18} style={{ color: moduleColor }} />
-                    <span className="text-white/80 font-light">
-                      10 Março, 2025
-                    </span>
-                  </div>
-                  <h3 className="text-3xl font-light mb-4">
-                    Guia Completo sobre Lipedema
-                  </h3>
-                  <p className="text-white/80 mb-6 text-lg font-light">
-                    Um guia abrangente sobre diagnóstico, tratamento e
-                    convivência com o lipedema. Escrito pela Dra. Aline Zago,
-                    este e-book traz informações valiosas para pacientes e
-                    profissionais.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      className="text-[#0a0a0a] rounded-none"
-                      style={{ backgroundColor: moduleColor }}
-                    >
-                      <Download size={18} className="mr-2" /> Baixar E-book
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="rounded-none"
-                      style={{ borderColor: moduleColor, color: moduleColor }}
-                    >
-                      Mais informações
-                    </Button>
-                  </div>
-                </div>
+    <ModuleSection
+      title="Conhecimento acessível"
+      subtitle="Hub de Conteúdo"
+      description="Artigos, vídeos, e-books e podcasts sobre saúde, bem-estar e medicina personalizada"
+      backgroundImage="/images/nutrition-1.jpg"
+    >
+      {/* Featured Content */}
+      <motion.div
+        className="relative px-4 md:px-8 lg:px-12 mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="relative overflow-hidden shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="relative h-[300px] lg:h-auto">
+              <Image
+                src="/images/nutrition-1.jpg"
+                alt="Guia Completo sobre Lipedema"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/70 to-transparent lg:hidden"></div>
+            </div>
+            <div className="bg-[#0a0a0a] text-white p-8 lg:p-12 relative border-t lg:border-t-0 lg:border-l border-gray-800">
+              <div className="absolute top-0 right-0 mt-6 mr-6">
+                <span className="px-3 py-1 rounded-none text-xs uppercase tracking-wider font-light bg-[#d43737] text-[#0a0a0a]">
+                  E-book
+                </span>
+              </div>
+              <div className="flex items-center gap-2 mb-4">
+                <Clock size={18} className="text-[#d43737]" />
+                <span className="text-white/80 font-light">10 Março, 2025</span>
+              </div>
+              <h3 className="text-3xl font-light mb-4">
+                Guia Completo sobre Lipedema
+              </h3>
+              <p className="text-white/80 mb-6 text-lg font-light">
+                Um guia abrangente sobre diagnóstico, tratamento e convivência
+                com o lipedema. Escrito pela Dra. Aline Zago, este e-book traz
+                informações valiosas para pacientes e profissionais.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button className="bg-[#d43737] text-[#0a0a0a] rounded-none">
+                  <Download size={18} className="mr-2" /> Baixar E-book
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-[#d43737] text-[#d43737] hover:bg-[#d43737]/5 rounded-none"
+                >
+                  Mais informações
+                </Button>
               </div>
             </div>
-          </motion.div>
-
-          {/* Content Tabs */}
-          <div className="mt-16">
-            <Tabs defaultValue="all" className="w-full">
-              <TabsList className="w-full max-w-md mx-auto grid grid-cols-4 mb-8">
-                <TabsTrigger
-                  value="all"
-                  className="data-[state=active]:text-white"
-                >
-                  Todos
-                </TabsTrigger>
-                <TabsTrigger
-                  value="articles"
-                  className="data-[state=active]:text-white"
-                >
-                  Artigos
-                </TabsTrigger>
-                <TabsTrigger
-                  value="videos"
-                  className="data-[state=active]:text-white"
-                >
-                  Vídeos
-                </TabsTrigger>
-                <TabsTrigger
-                  value="ebooks"
-                  className="data-[state=active]:text-white"
-                >
-                  E-books
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="all" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {contentItems
-                    .filter((item) => item.id !== "content-1")
-                    .map((item, index) => (
-                      <ContentCard
-                        key={item.id}
-                        item={item}
-                        index={index}
-                        moduleColor={moduleColor}
-                      />
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="articles" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {contentItems
-                    .filter((item) => item.type === "article")
-                    .map((item, index) => (
-                      <ContentCard
-                        key={item.id}
-                        item={item}
-                        index={index}
-                        moduleColor={moduleColor}
-                      />
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="videos" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {contentItems
-                    .filter((item) => item.type === "video")
-                    .map((item, index) => (
-                      <ContentCard
-                        key={item.id}
-                        item={item}
-                        index={index}
-                        moduleColor={moduleColor}
-                      />
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="ebooks" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {contentItems
-                    .filter((item) => item.type === "ebook")
-                    .map((item, index) => (
-                      <ContentCard
-                        key={item.id}
-                        item={item}
-                        index={index}
-                        moduleColor={moduleColor}
-                      />
-                    ))}
-                </div>
-              </TabsContent>
-            </Tabs>
           </div>
         </div>
-      </section>
-    </ModuleTransition>
+      </motion.div>
+
+      {/* Content Tabs */}
+      <div className="mt-16">
+        <Tabs defaultValue="all" className="w-full">
+          <TabsList className="w-full max-w-md mx-auto grid grid-cols-4 mb-8">
+            <TabsTrigger value="all" className="data-[state=active]:text-white">
+              Todos
+            </TabsTrigger>
+            <TabsTrigger
+              value="articles"
+              className="data-[state=active]:text-white"
+            >
+              Artigos
+            </TabsTrigger>
+            <TabsTrigger
+              value="videos"
+              className="data-[state=active]:text-white"
+            >
+              Vídeos
+            </TabsTrigger>
+            <TabsTrigger
+              value="ebooks"
+              className="data-[state=active]:text-white"
+            >
+              E-books
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="all" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {contentItems
+                .filter((item) => item.id !== "content-1")
+                .map((item, index) => (
+                  <ContentCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    moduleColor="#d43737"
+                  />
+                ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="articles" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {contentItems
+                .filter((item) => item.type === "article")
+                .map((item, index) => (
+                  <ContentCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    moduleColor="#d43737"
+                  />
+                ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="videos" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {contentItems
+                .filter((item) => item.type === "video")
+                .map((item, index) => (
+                  <ContentCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    moduleColor="#d43737"
+                  />
+                ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="ebooks" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {contentItems
+                .filter((item) => item.type === "ebook")
+                .map((item, index) => (
+                  <ContentCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    moduleColor="#d43737"
+                  />
+                ))}
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </ModuleSection>
   );
 }
 
