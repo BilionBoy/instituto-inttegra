@@ -1,8 +1,8 @@
-import type React from "react"
-import { Navbar } from "@/components/Navbar"
-import { SiteFooter } from "@/components/site-footer"
+import type React        from "react"
+import { Navbar }        from "@/components/Navbar"
+import { SiteFooter }    from "@/components/site-footer"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Montserrat } from "next/font/google"
+import { Montserrat }    from "next/font/google"
 import "@/app/globals.css"
 
 const montserrat = Montserrat({
