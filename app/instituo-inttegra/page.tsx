@@ -8,14 +8,17 @@ import UpcomingEvents from "@/components/Events";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
+import { ModuleHeader } from "@/components/ecosystem/module-header";
+import { ModuleTransition } from "@/components/ecosystem/module-transition";
 
-export default function Home() {
+export default function InstitutoInttegra() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <>
+    <ModuleTransition>
+      <ModuleHeader />
       <BackgroundMain />
       <VideoPlayer />
       <AboutSection />
@@ -23,6 +26,6 @@ export default function Home() {
       <UpcomingEvents />
       <ServicesSection />
       <CTASection />
-    </>
+    </ModuleTransition>
   );
 }

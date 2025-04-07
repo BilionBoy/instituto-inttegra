@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Play, ChevronDown } from "lucide-react"
-import { useEffect, useState, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play, ChevronDown } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 
 export default function BackgroundMain() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hoverImage, setHoverImage] = useState<number | null>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoverImage, setHoverImage] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Imagens para o background
   const backgroundImages = [
     {
-      src: "/images/clinic-1.jpg",
+      src: "/images/Aline-Marketing.jpg",
       title: "Clínica Especializada",
       description: "Ambiente exclusivo para seu atendimento personalizado",
     },
     {
-      src: "/images/doctor-1.jpg",
+      src: "/images/Aline-Symbol.jpg",
       title: "Equipe Médica",
       description: "Profissionais altamente qualificados e atualizados",
     },
@@ -39,32 +39,32 @@ export default function BackgroundMain() {
       title: "Nutrição Funcional",
       description: "Abordagem personalizada para sua saúde",
     },
-  ]
+  ];
 
   // Alternar entre as imagens a cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % backgroundImages.length)
-    }, 5000)
+      setActiveIndex((current) => (current + 1) % backgroundImages.length);
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [backgroundImages.length])
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
 
   // Rastrear posição do mouse para efeitos interativos
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
+        const rect = containerRef.current.getBoundingClientRect();
         setMousePosition({
           x: e.clientX - rect.left,
           y: e.clientY - rect.top,
-        })
+        });
       }
-    }
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -77,10 +77,13 @@ export default function BackgroundMain() {
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
-  }
+  };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
+    <div
+      ref={containerRef}
+      className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]"
+    >
       {/* Decorative elements - gold capsules/pills */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         <motion.div
@@ -188,22 +191,36 @@ export default function BackgroundMain() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center gap-2 bg-[#d4af37]/20 px-4 py-1.5 rounded-none mb-2 backdrop-blur-sm">
-              <span className="text-[#d4af37] text-sm font-medium uppercase tracking-wider">Instituto Inttegra</span>
+              <span className="text-[#d4af37] text-sm font-medium uppercase tracking-wider">
+                Instituto Inttegra
+              </span>
             </div>
           </motion.div>
 
-          <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
+          <motion.div
+            custom={1}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight text-white mb-6">
               Transformando <br />
-              <span className="text-[#d4af37] font-medium">saúde</span> em liberdade
+              <span className="text-[#d4af37] font-medium">saúde</span> em
+              liberdade
             </h1>
           </motion.div>
 
-          <motion.div custom={2} variants={fadeUpVariants} initial="hidden" animate="visible">
+          <motion.div
+            custom={2}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <div className="h-1 w-24 bg-gradient-to-r from-[#d4af37] via-[#f5e7a0] to-[#d4af37] mb-8"></div>
             <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light max-w-xl">
-              Uma abordagem personalizada e baseada em ciência para transformar sua saúde e qualidade de vida, unindo o
-              melhor da medicina tradicional e complementar.
+              Uma abordagem personalizada e baseada em ciência para transformar
+              sua saúde e qualidade de vida, unindo o melhor da medicina
+              tradicional e complementar.
             </p>
           </motion.div>
 
@@ -225,7 +242,12 @@ export default function BackgroundMain() {
             </Button>
           </motion.div>
 
-          <motion.div custom={4} variants={fadeUpVariants} initial="hidden" animate="visible">
+          <motion.div
+            custom={4}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <div className="flex items-center gap-2 text-white/60 text-sm">
               <span className="font-medium">Dra. Aline Zago</span>
               <span className="h-1 w-1 rounded-full bg-[#d4af37]"></span>
@@ -241,110 +263,17 @@ export default function BackgroundMain() {
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{
             opacity: { delay: 2, duration: 1 },
-            y: { repeat: Number.POSITIVE_INFINITY, duration: 1.5, ease: "easeInOut" },
+            y: {
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 1.5,
+              ease: "easeInOut",
+            },
           }}
         >
           <span className="text-white/60 text-sm mb-2">Explore</span>
           <ChevronDown className="text-[#d4af37] h-6 w-6" />
         </motion.div>
       </div>
-
-      {/* Interactive Image Gallery Mural */}
-      <div className="relative z-10 bg-[#0a0a0a] border-t border-[#d4af37]/20 py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-12 text-center">
-            <motion.h3
-              className="text-2xl md:text-3xl font-light text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              Explore nossa <span className="text-[#d4af37] font-medium">experiência</span>
-            </motion.h3>
-            <motion.div
-              className="w-16 h-px bg-[#d4af37] mx-auto"
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: 64 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            ></motion.div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
-            {backgroundImages.map((item, index) => (
-              <motion.div
-                key={index}
-                className="relative overflow-hidden group cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onHoverStart={() => setHoverImage(index)}
-                onHoverEnd={() => setHoverImage(null)}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="relative h-[200px] md:h-[250px]">
-                  <Image
-                    src={item.src || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent transition-opacity duration-300 ${hoverImage === index ? "opacity-80" : "opacity-60"}`}
-                  ></div>
-
-                  <div className="absolute inset-0 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium text-lg mb-1">{item.title}</h4>
-                    <p className="text-white/80 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {item.description}
-                    </p>
-
-                    <motion.div
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#d4af37]/80 flex items-center justify-center opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {index === 2 || index === 3 ? (
-                        <Play size={20} className="text-[#0a0a0a] ml-1" />
-                      ) : (
-                        <ArrowRight size={20} className="text-[#0a0a0a]" />
-                      )}
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Animated highlight bar */}
-          <motion.div
-            className="mt-16 py-6 px-8 bg-[#d4af37]/10 border border-[#d4af37]/20 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="flex items-center mb-4 md:mb-0">
-                <div className="w-12 h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center mr-4">
-                  <Play size={20} className="text-[#d4af37] ml-1" />
-                </div>
-                <div>
-                  <h4 className="text-white font-medium">Conteúdo Exclusivo</h4>
-                  <p className="text-white/60 text-sm">Assista nossos vídeos e palestras</p>
-                </div>
-              </div>
-              <Button className="bg-[#d4af37] hover:bg-[#f5e7a0] hover:text-[#0a0a0a] text-[#0a0a0a] rounded-none">
-                Ver Conteúdos
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
     </div>
-  )
+  );
 }
-

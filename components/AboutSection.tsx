@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function AboutSection() {
   const specializations = [
@@ -11,13 +11,18 @@ export default function AboutSection() {
     "Performance Esportiva",
     "Longevidade",
     "Lipedema",
-  ]
+  ];
 
   return (
     <section className="py-24 bg-[#0a0a0a] relative">
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
-        <Image src="/images/doctor-1.jpg" alt="Instituto Inttegra" fill className="object-cover opacity-10" />
+        <Image
+          src="/images/DRA.jpg"
+          alt="Instituto Inttegra"
+          fill
+          className="object-cover opacity-10"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
       </div>
 
@@ -32,7 +37,7 @@ export default function AboutSection() {
           >
             <div className="relative h-[600px] overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.2)]">
               <Image
-                src="/images/doctor-1.jpg"
+                src="/images/DRA.jpg"
                 alt="Dra. Aline Zago"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
@@ -56,18 +61,24 @@ export default function AboutSection() {
             </div>
             <h2 className="text-4xl font-light mb-6 text-white transform-gpu transition-all duration-500 hover:translate-x-1">
               DRA. ALINE ZAGO
-              <span className="block text-lg font-light text-[#d4af37] mt-1">MÉDICA | CRM-RO 4.370</span>
+              <span className="block text-lg font-light text-[#d4af37] mt-1">
+                MÉDICA | CRM-RO 4.370
+              </span>
             </h2>
             <p className="text-white/80 mb-6 text-lg leading-relaxed transform-gpu transition-all duration-500 hover:translate-y-[-2px] font-light">
-              Especialista em emagrecimento, longevidade e lipedema, a Dra. Aline Zago lidera o Instituto Inttegra com
-              uma visão inovadora sobre saúde integrada e medicina personalizada.
+              Especialista em emagrecimento, longevidade e lipedema, a Dra.
+              Aline Zago lidera o Instituto Inttegra com uma visão inovadora
+              sobre saúde integrada e medicina personalizada.
             </p>
             <p className="text-white/80 mb-8 text-lg leading-relaxed transform-gpu transition-all duration-500 hover:translate-y-[-2px] font-light">
-              Com formação internacional e constante atualização científica, ela desenvolve protocolos que unem o melhor
-              da medicina tradicional com abordagens complementares, sempre baseados em evidências e personalizados para
-              cada paciente.
+              Com formação internacional e constante atualização científica, ela
+              desenvolve protocolos que unem o melhor da medicina tradicional
+              com abordagens complementares, sempre baseados em evidências e
+              personalizados para cada paciente.
             </p>
-            <h3 className="text-xl font-light mb-4 text-white">Áreas de especialização:</h3>
+            <h3 className="text-xl font-light mb-4 text-white">
+              Áreas de especialização:
+            </h3>
             <ul className="space-y-3 mb-10">
               {specializations.map((item, index) => (
                 <motion.li
@@ -79,7 +90,9 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                 >
                   <span className="h-px w-6 bg-[#d4af37]"></span>
-                  <span className="text-lg font-light text-white/90">{item}</span>
+                  <span className="text-lg font-light text-white/90">
+                    {item}
+                  </span>
                 </motion.li>
               ))}
             </ul>
@@ -90,6 +103,5 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
